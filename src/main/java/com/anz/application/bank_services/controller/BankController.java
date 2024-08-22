@@ -107,6 +107,22 @@ public class BankController {
         }
     }
 
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<?> deleteAccount(@PathVariable Long id)
+    {
+        try {
+            Account foundAccount = bankRepository.findByAccountNumber(id);
+            if (foundAccount != null) {
+                 bankRepository.deleteById(id);
+                 return new ResponseEntity<>("Account deleted", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Account doesn't exists", HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     private void addFreeGift(Account account) {
         account.setCurrentBalance(1000);
     }
