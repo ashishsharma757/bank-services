@@ -29,6 +29,15 @@ public class Account {
     private String phoneNumber;
 
     private double currentBalance;
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "  firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", currentBalance=" + currentBalance +
+                '}';
+    }
 }
 
 
